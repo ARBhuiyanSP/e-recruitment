@@ -992,13 +992,16 @@ function get_rrr_item_details($rrr_details){
                 </div>
                 <!-- /.comment-text -->
             </div>
-			<form id="rrr_dh_update_form"> 
+			<form id="rrr_dh_update_form">
+
+
+				<input type="hidden" name="acknowledgement" value="<?php echo $rrr_info->rrr_status; ?>">			
 				<div class="form-group">
 					<label for="comment">Comments:</label>
 					<textarea class="form-control" rows="5" id="remarks" name="remarks"></textarea>
 				</div>
-				<input type="hidden" name="rrr_info_id" value="<?php echo $rrr_id; ?>">
-				<input type="hidden" name="created_by" value="<?php echo $currentUserId; ?>">
+				<input type="hidden" name="rrr_info_id" value="<?php echo $rrr_info->id; ?>">
+				<input type="hidden" name="created_by" value="<?php echo $rrr_info->rrr_user_id; ?>">
 				<button type="button" class="btn btn-primary btn-block" onclick="execute_rrr_dh_update_form('rrr_dh_update_form', 'rrr_dh_update_execute');">Update</button>
 			</form>
         </div>
