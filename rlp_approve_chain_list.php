@@ -11,11 +11,11 @@
         <?php include 'operation_message.php'; ?>
         <h1>
             Home
-            <small>RLP Approve Chain</small>
+            <small>RRR Approve Chain</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">RLP Approve Chain</li>
+            <li class="active">RRR Approve Chain</li>
         </ol>
     </section>
 
