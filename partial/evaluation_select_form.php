@@ -112,7 +112,7 @@
 						?>
 						<tr id="row_id_<?php echo $adata->candidate_id; ?>">
 							<td><?php echo getCandidatesNameByIdAndTable('candidates',$adata->candidate_id); ?></td>
-							<td width="10%"><input type="text" class="form-control" value="50000"/></td>
+							<td width="10%"><input type="text" class="form-control" value="<?php echo getCandidatesSalaryByIdAndTable('candidates',$adata->candidate_id); ?>"/></td>
 							<td width="10%"><input type="text" class="form-control" value="<?php if (isset($row['salary_expectation']) && $row['salary_expectation'] != '') { echo $row['salary_expectation']; }?>"/></td>
 							<td width="10%">
 								<a title="Details" class="btn btn-sm btn-success"  data-toggle="modal" data-target="#myView1<?php echo $adata->candidate_id; ?>"><span class="fa fa-eye"> Details</span></a>

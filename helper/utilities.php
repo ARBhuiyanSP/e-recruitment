@@ -216,6 +216,16 @@ function updateData($table, $dataParam, $where) {
     }
     return $feedbackData;
 }
+function getCandidatesSalaryByIdAndTable($table, $id){
+    global $conn;
+    $sql = "SELECT * FROM $table WHERE `id`='$id'";
+    $result = $conn->query($sql);
+    $name   =   '';
+    if ($result->num_rows > 0) {
+        $name   =   $result->fetch_object()->expected_salary;
+    }
+    return $name;
+}
 function getCandidatesNameByIdAndTable($table, $id){
     global $conn;
     $sql = "SELECT * FROM $table WHERE `id`='$id'";

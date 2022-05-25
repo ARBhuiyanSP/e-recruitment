@@ -72,6 +72,7 @@ function create_candidate($cv_path = "uploads/cv/")
     $exp_with_ddc           = (isset($_POST['exp_with_ddc']) && !empty($_POST['exp_with_ddc']) ? mysqli_real_escape_string($conn, $_POST['exp_with_ddc']) : '');
     $rrr_no           = (isset($_POST['rrr_no']) && !empty($_POST['rrr_no']) ? mysqli_real_escape_string($conn, $_POST['rrr_no']) : '');
     $designation           = (isset($_POST['designation']) && !empty($_POST['designation']) ? mysqli_real_escape_string($conn, $_POST['designation']) : '');
+    $expected_salary           = (isset($_POST['expected_salary']) && !empty($_POST['expected_salary']) ? mysqli_real_escape_string($conn, $_POST['expected_salary']) : '');
     $remarks           = (isset($_POST['remarks']) && !empty($_POST['remarks']) ? mysqli_real_escape_string($conn, $_POST['remarks']) : '');
 
     $cv     =   candidate_cv_upload($cv_path);
@@ -91,6 +92,7 @@ function create_candidate($cv_path = "uploads/cv/")
         'exp_with_ddc'		=>  $exp_with_ddc,
         'rrr_no'			=>  $rrr_no,
         'designation'		=>  $designation,
+        'expected_salary'		=>  $expected_salary,
         'remarks'			=>  $remarks,
         'cv'            	=>  $cv,
     ];
@@ -277,7 +279,7 @@ function get_candidates_form()
                     <input class="form-control" type="text" id="designation" name="exp_with_ddc">
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <div class="form-group">
                     <label for="exampleId">Upload CV</label>
                     <input class="form-control" type="file" id="" name="sn_prt_cv" required>
@@ -301,10 +303,27 @@ function get_candidates_form()
 
                 </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-2">
                 <div class="form-group">
                     <label for="division/company">Designation</label>
-                    <input class="form-control" type="text" id="designation" name="designation">
+					<select class="form-control" id="designation" name="designation">
+						<option value="">Please select</option>
+						<?php
+						$table = "designations";
+						$order = "ASC";
+						$column = "name";
+						$datas = getTableDataByTableName($table, $order, $column);
+						foreach ($datas as $data) {
+							?>
+							<option value="<?php echo $data->id; ?>"><?php echo $data->name; ?></option>
+	<?php } ?>
+                </select>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="exampleId">Expected Salary</label>
+                    <input class="form-control" type="text" id="" name="expected_salary">
                 </div>
             </div>
             <div class="col-md-12">
