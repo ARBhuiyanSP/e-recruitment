@@ -47,6 +47,6 @@ if (isset($agencyData) && !empty($agencyData)) {
     </div>
 <?php } else { ?>
     <div class="alert alert-warning">
-        <strong>Sorry there is no data!</strong>
+        <strong>No Data Found!</strong>
     </div>
 <?php } ?>

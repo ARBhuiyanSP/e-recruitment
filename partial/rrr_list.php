@@ -139,6 +139,6 @@ if (isset($rrrListData) && !empty($rrrListData)) {
     </div>
 <?php } else { ?>
     <div class="alert alert-warning">
-        <strong>Sorry there is no data!</strong>
+        <strong>No Data Found!</strong>
     </div>
 <?php } ?>
