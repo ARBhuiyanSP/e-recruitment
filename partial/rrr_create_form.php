@@ -113,10 +113,10 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
 			<div class="row">
-			<center><h3>Particulars</h3></center>
-				<div class="col-md-4">
+			<center><h5 style="background-color:#F0EFEF;padding:5px;">Particulars</h5></center>
+				<div class="col-md-3">
 					<div class="form-group">
 						<label for="exampleId">Company--:</label>
 						<select class="all_emplyees form-control" id="reqcompany" name="req_company" onchange="" >
@@ -124,7 +124,7 @@
 						</select>
 					</div>
 				</div>
-				<div class="col-md-4">
+				<div class="col-md-2">
 					<div class="form-group">
 						<label for="exampleId">Division:</label>
 						<select class="form-control select2" id="reqdivision" name="req_division" onchange="getDepartmentByBranches(this.value);" required >
@@ -141,7 +141,7 @@
 						</select>
 					</div>
 				</div>
-				<div class="col-md-4">
+				<div class="col-md-2">
 					<div class="form-group">
 						<label for="exampleId">Branch--:</label>
 						<select class="all_emplyees form-control" id="reqbranch" name="req_branch" onchange="" >
@@ -149,7 +149,7 @@
 						</select>
 					</div>
 				</div>
-				<div class="col-md-4">
+				<div class="col-md-2">
 					<div class="form-group">
 						<label for="exampleId">Department:</label>
 						<select class="all_emplyees form-control" id="reqdepartment" name="req_department" required >
@@ -166,7 +166,7 @@
 						</select>
 					</div>
 				</div>
-				<div class="col-md-4">
+				<div class="col-md-2">
 					<div class="form-group">
 						<label for="exampleId">Designation:</label>
 						<select class="all_emplyees form-control" id="req_designation" name="req_designation" required >
@@ -183,55 +183,63 @@
 						</select>
 					</div>
 				</div>
-				<div class="col-md-4">
+				<!-- <div class="col-md-4">
 					<div class="form-group">
 						<label for="exampleId">Grade:</label>
 						<select class="all_emplyees form-control" id="req_grade" name="req_grade" >
 							<option value="">Please select</option>
 							<?php
-							for( $i=1; $i<=20; $i++ )
-								{
+							//for( $i=1; $i<=20; $i++ )
+								//{
 								 ?>
-								<option value="<?php echo $i; ?>">Grade-<?php echo $i; ?></option>
-							<?php } ?>
+								<option value="<?php //echo $i; ?>">Grade-<?php //echo $i; ?></option>
+							<?php //} ?>
 						</select>
 					</div>
-				</div>
-				<div class="col-md-3">
+				</div> -->
+				<div class="col-md-1">
 					<div class="form-group">
-						<label for="exampleId">Required Number:</label>
+						<label for="exampleId">Posts:</label>
 						<input class="form-control" type="text" id="req_number" name="req_number" required >
 					</div>
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-2">
 					<div class="form-group">
 						<label for="exampleId">Location:</label>
 						<input class="form-control" type="text" id="req_location_project" name="req_location_project">
 					</div>
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-2">
 					<div class="form-group">
-						<label for="exampleId">ReportingManager:</label>
+						<label for="exampleId">Reporting Person:</label>
 						<input class="form-control" type="text" id="req_reporting_man" name="req_reporting_man">
 					</div>
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-2">
 					<div class="form-group">
 						<label for="exampleId">Budgeted Salary:</label>
 						<input class="form-control" type="text" id="req_salary" name="req_salary">
 					</div>
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-3">
 					 <label for="exampleId">Key Responsibilites:</label>
-					<textarea class="form-control" id="" name="req_responsibilities"></textarea>
+					<!-- <textarea class="form-control" id="" name="req_responsibilities"></textarea> -->
+					<input class="form-control" type="text" id="" name="req_responsibilities">
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-3">
 					 <label for="exampleId">Requester Remarks:</label>
-					<textarea class="form-control" id="" name="remarks"></textarea>
+					<!--  <textarea class="form-control" id="" name="remarks"></textarea> -->
+					<input class="form-control" type="text" id="" name="remarks">
 				</div>
 			</div>
 		</div>
-        <div class="col-md-6"><?php echo get_user_department_wise_rrr_chain_for_create(); ?></div>
+        <div class="col-md-6"></div>
+        <div class="col-md-6">
+			<button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#collapse" style="float:right;"><i class="fa fa-tags" aria-hidden="true"></i> Approval Chain</button>
+			<div id="collapse" class="collapse">
+				<?php echo get_user_department_wise_rrr_chain_for_create(); ?>
+			</div>
+		</div>
     </div>
 
     <div class="row" style="padding-top:5px;">
