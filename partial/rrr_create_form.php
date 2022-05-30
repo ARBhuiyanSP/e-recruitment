@@ -41,7 +41,7 @@
 		<div class="col-sm-3">
             <div class="form-group">
 				<label for="division/company">Employee Type:</label>
-                <select class="form-control" id="emp_type" name="emp_type" required >
+                <select class="all_emplyees form-control" id="emp_type" name="emp_type" required >
 					<option value="">Please select</option>
 					<option value="management">Management</option>
 					<option value="non-management">Non-management</option>
@@ -54,13 +54,25 @@
 	<div class="row">
         <div class="col-sm-3">
             <div class="form-group">
-                <label for="exampleId">Requested By</label>
+			<?php 
+				$rrr_user_office_id    = $_SESSION['logged']['office_id'];
+				$request_division      = $_SESSION['logged']['branch_id'];
+				$request_department    = $_SESSION['logged']['department_id'];
+				$designation           = $_SESSION['logged']['designation'];
+			?>
+                <label for="req_by">Requested By</label>
                 <select class="all_emplyees form-control" name="req_by" id="req_by" onchange="get_requested_by_information();" required >
 					<option value="">Please select</option>
 					<?php
 						if(isset($all_employees) && !empty($all_employees)){
-							foreach($all_employees as $emp){ ?>
-								<option value="<?php echo $emp->emp_id ?>"><?php echo $emp->emp_name.' ('.$emp->emp_id.')'; ?></option>
+							foreach($all_employees as $emp){
+								if($rrr_user_office_id == $emp->emp_id){
+										$selected	= 'selected';
+										}else{
+										$selected	= '';
+										}
+										?>
+								<option value="<?php echo $emp->emp_id ?>" <?php echo $selected; ?>><?php echo $emp->emp_name.' ('.$emp->emp_id.')'; ?></option>
 							<?php }
 						}
 					?>
@@ -70,19 +82,19 @@
 		<div class="col-sm-3">
             <div class="form-group">
 				<label for="division/company">Division/Company</label>
-                <input class="form-control" type="text" id="req_by_division" name="req_by_division">
+                <input class="form-control" type="text" id="req_by_division" name="req_by_division" value="<?php echo getDivisionNameById($request_division); ?>">
 			</div>
         </div>
 		<div class="col-sm-3">
             <div class="form-group">
 				<label for="division/company">Department</label>
-                <input class="form-control" type="text" id="department_id" name="req_by_department">
+                <input class="form-control" type="text" id="department_id" name="req_by_department" value="<?php echo getDepartmentNameById($request_department); ?>">
 			</div>
         </div>
 		<div class="col-sm-3">
             <div class="form-group">
 				<label for="division/company">Designation</label>
-                <input class="form-control" type="text" id="designation" name="req_by_designation">
+                <input class="form-control" type="text" id="designation" name="req_by_designation" value="<?php echo getDesignationNameById($designation); ?>">
 			</div>
         </div>
     </div>
@@ -107,7 +119,7 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="exampleId">Company--:</label>
-						<select class="form-control" id="reqcompany" name="req_company" onchange="" >
+						<select class="all_emplyees form-control" id="reqcompany" name="req_company" onchange="" >
 							<option value="">Please select</option>
 						</select>
 					</div>
@@ -115,7 +127,7 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="exampleId">Division:</label>
-						<select class="form-control" id="reqdivision" name="req_division" onchange="getDepartmentByBranches(this.value);" required >
+						<select class="form-control select2" id="reqdivision" name="req_division" onchange="getDepartmentByBranches(this.value);" required >
 							<option value="">Please select</option>
 							<?php
 							$table = "branch";
@@ -132,7 +144,7 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="exampleId">Branch--:</label>
-						<select class="form-control" id="reqbranch" name="req_branch" onchange="" >
+						<select class="all_emplyees form-control" id="reqbranch" name="req_branch" onchange="" >
 							<option value="">Please select</option>
 						</select>
 					</div>
@@ -140,7 +152,7 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="exampleId">Department:</label>
-						<select class="form-control" id="reqdepartment" name="req_department" required >
+						<select class="all_emplyees form-control" id="reqdepartment" name="req_department" required >
 							<option value="">Please select</option>
 							<?php
 							$table = "department";
@@ -157,7 +169,7 @@
 				<div class="col-md-4">
 					<div class="form-group">
 						<label for="exampleId">Designation:</label>
-						<select class="form-control" id="req_designation" name="req_designation" required >
+						<select class="all_emplyees form-control" id="req_designation" name="req_designation" required >
 							<option value="">Please select</option>
 							<?php
 							$table = "designations";
