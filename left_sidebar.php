@@ -49,6 +49,9 @@ $user_id_session = $_SESSION['logged']['user_id'];
                 <li class="<?php if ($page_name == "import_system.php") {
                 echo "active";
             } ?>"><a href="import_system.php"><i class="fa fa-upload" aria-hidden="true"></i> <span>Import</span></a></li>
+			<li class="<?php if ($page_name == "import_system.php") {
+                echo "active";
+            } ?>"><a href="backup_system.php"><i class="fa fa-download" aria-hidden="true"></i> <span>Data Backup</span></a></li>
 <?php } ?>
             <li class="header">User Page</li>
             <?php if (hasAccessPermission($user_id_session, 'rlp_list', 'view_access')) { ?>

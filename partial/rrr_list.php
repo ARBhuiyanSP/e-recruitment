@@ -23,7 +23,7 @@ if (isset($rrrListData) && !empty($rrrListData)) {
                     <th>Requested By</th>
                     <th>Division</th>
                     <th>Requested Post</th>
-                    <th>Urgency</th>
+                    <th>Priority</th>
                     <th>Status</th>
                     <th style="background-color: #3C8DBC;color: #fff;">Action</th>
                 </tr>
@@ -114,7 +114,7 @@ if (isset($rrrListData) && !empty($rrrListData)) {
                             <?php } ?>
 							
 							<?php if(hasAccessPermission($user_id_session, 'crlp', 'edit_access')){ ?>
-                            <a title="Approve RRR" class="btn btn-sm btn-warning" href="#">
+                            <a title="Approve RRR" class="btn btn-sm btn-danger" href="#">
                                 <span class="fa fa-times-circle"> Reject</span>
                             </a>
                             <?php } ?>
