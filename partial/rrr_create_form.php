@@ -118,9 +118,17 @@
 			<center><h5 style="background-color:#F0EFEF;padding:5px;">Particulars</h5></center>
 				<div class="col-md-3">
 					<div class="form-group">
-						<label for="exampleId">Company--:</label>
+						<label for="exampleId">Company:</label>
 						<select class="all_emplyees form-control" id="reqcompany" name="req_company" onchange="" >
 							<option value="">Please select</option>
+							<option value="Saif Powertec Ltd">Saif Powertec Ltd</option>
+							<option value="Blueline Communications Ltd">Blueline Communications Ltd</option>
+							<option value="E-Engineering Ltd">E-Engineering Ltd</option>
+							<option value="Maxon Power Ltd">Maxon Power Ltd</option>
+							<option value="Saif Electrical Manufacturing Ltd">Saif Electrical Manufacturing Ltd</option>
+							<option value="Saif Global Sports Ltd">Saif Global Sports Ltd</option>
+							<option value="SAIF Maritime Ltd">SAIF Maritime Ltd</option>
+							<option value="Saif Port Holdings Ltd">Saif Port Holdings Ltd</option>
 						</select>
 					</div>
 				</div>
