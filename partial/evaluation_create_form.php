@@ -30,7 +30,7 @@
 			<table id="rlp_list_table" class="table table-bordered table-striped list-table-custom-style">
 				<thead>
 					<tr>
-						<th>Candidates</th>
+						<th>Candidatess</th>
 						<th>Expected Salary</th>
 						<th>Agreed Salary</th>
 						<th colspan="2">Action</th>  

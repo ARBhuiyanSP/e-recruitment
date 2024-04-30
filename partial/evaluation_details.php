@@ -11,7 +11,7 @@ $resultcan = $conn->query($sqlcan);
 $rowcan = mysqli_fetch_array($resultcan);
  ?>
 <div class="modal-content">
-	<form action="" method="post">
+	<form action="" method="post" enctype="multipart/form-data">
 		<div class="modal-header">
 		  <button type="button" class="close" data-dismiss="modal">&times;</button>
 		  <div class="row text-center">
@@ -133,7 +133,60 @@ $rowcan = mysqli_fetch_array($resultcan);
 						<label for="exampleId">Notice Period :</label>
 						<input type="text" class="form-control" value="" name="" readonly />
 					</div> 
-				</div>	
+					
+<!---------- auto added row
+    <div class="row">
+		
+	</div>
+	<table class="table table-bordered" id="tbl_posts">
+        <thead>
+            <tr>
+                <th>SL No</th>
+                <th>Item Description</th>
+                <th>Purpose of Purchase</th>
+                <th>Quantity</th>
+                <th>Estimated Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="tbl_posts_body">
+            <tr id="rec-1">
+                <td><span class="sn">1</span>.</td>
+                <td><textarea class="form-control" id="" name="description[]" rows="1" required></textarea></td>
+                <td><input type="text" class="form-control" id="" name="purpose[]" value="" size=""  required /></td>
+                <td><input type="text" class="form-control" id="" name="quantity[]" value="" size=""  required /></td>
+                <td><input type="text" class="form-control" id="" name="estimatedPrice[]" value="" size=""  /></td>
+                
+                <td><a class="btn btn-xs" data-id=""><i class="glyphicon glyphicon-trash"></i></a></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="row">
+        <div class="col-md-12 pull-right">
+            <div class="form-group">
+                <a class="btn btn-primary pull-right add-record" data-added="0"><i class="glyphicon glyphicon-plus"></i> Add Another Item</a>
+            </div>
+        </div>
+    </div>
+	<div style="display:none;">
+		<table id="sample_table">
+			<tr id="">
+				<td><span class="sn"></span>.</td>
+				<td><textarea class="form-control" id="" name="description[]" rows="1" required></textarea></td>
+				<td><input type="text" class="form-control" id="" name="purpose[]" value="" size=""  required /></td>
+				<td><input type="text" class="form-control" id="" name="quantity[]" value="" size=""  required /></td>
+				<td><input type="text" class="form-control" id="" name="estimatedPrice[]" value="" size="" /></td>
+				<td><a class="btn btn-xs delete-record" data-id="0"><i class="glyphicon glyphicon-trash"></i></a></td>
+			</tr>
+		</table>
+	</div>
+
+ auto added row----------->
+					
+				</div>
+
+
+				
 			</div>
 		</div>
 		<div class="modal-footer">

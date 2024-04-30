@@ -14,7 +14,7 @@ $rrrListData = getRRRListData();
 if (isset($rrrListData) && !empty($rrrListData)) {
     ?>
     <div class="table-responsive">
-        <table id="rlp_list_table" class="table table-bordered table-striped list-table-custom-style">
+        <table id="example2" class="table table-bordered table-striped list-table-custom-style">
             <thead>
                 <tr>
                     <th>#</th>

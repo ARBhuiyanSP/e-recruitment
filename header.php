@@ -23,6 +23,7 @@ include 'function/import_processing.php';
 include 'function/rrr_processing.php';
 include 'function/interview_register_form_process.php';
 include 'function/evaluation_processing.php';
+include 'function/notesheet_processing.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -83,5 +84,14 @@ include 'function/evaluation_processing.php';
 		<script src="js/bom-transfer.js"></script>
 		<script src="js/can-transfer.js"></script>
 </head>
+<style>
+table.list-table-custom-style tr td{
+	padding-top:2px;
+	
+}
+.table>tbody>tr>td, .table>tbody>tr>th{
+	padding:2px;
+}
+</style>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">

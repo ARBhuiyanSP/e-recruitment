@@ -86,6 +86,7 @@ jQuery( document ).ready(function( $ ) {
 <script src="js/rrr_form_manage.js"></script>
 <?php include 'modal/rlp_details_quick_view.php'; ?>
 <?php include 'modal/rrr_details_quick_view.php'; ?>
+<?php include 'modal/notesheet_details_quick_view.php'; ?>
 <?php include 'modal/candidate_add_form_ajax.php'; ?>
 <script>
   $(function () {
@@ -93,4 +94,17 @@ jQuery( document ).ready(function( $ ) {
     $('.select2').select2();
     $('.all_emplyees').select2();
   })
+</script>
+<script>
+	$(document).ready(function () {
+		$('#example').DataTable();
+	});
+	
+	$(document).ready(function () {
+		$('#example1').DataTable();
+	});
+	
+	$(document).ready(function () {
+		$('#example2').DataTable();
+	});
 </script>

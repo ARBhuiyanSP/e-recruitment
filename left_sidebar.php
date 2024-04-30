@@ -65,15 +65,20 @@ $user_id_session = $_SESSION['logged']['user_id'];
             } ?>">
                     <a href="rrr_list.php"><i class="fa fa-file-text-o"></i> <span>RRR</span></a>
                 </li>
-				<li class="<?php if ($page_name == "rrr_create.php") {
+				<li class="<?php if ($page_name == "interview_list.php") {
                 echo "active";
             } ?>">
                     <a href="interview_list.php"><i class="fa fa-file-text-o"></i> <span>Interview</span></a>
                 </li>
-				<li class="<?php if ($page_name == "rrr_create.php") {
+				<li class="<?php if ($page_name == "evaluation.php") {
                 echo "active";
             } ?>">
                     <a href="evaluation.php"><i class="fa fa-file-text-o"></i> <span>Evaluation</span></a>
+                </li>
+				<li class="<?php if ($page_name == "notesheet.php") {
+                echo "active";
+            } ?>">
+                    <a href="notesheet.php"><i class="fa fa-file-text-o"></i> <span>Notesheet</span></a>
                 </li>
 <?php } ?>
             <li class="header">Report</li>

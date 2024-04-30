@@ -91,6 +91,19 @@ function rrr_quick_view(rrr_id){
     });
 }
 
+function notesheet_quick_view(rrr_id){
+    $.ajax({
+        url: baseUrl + "function/notesheet_processing.php?process_type=notesheet_quick_view",
+        type: 'POST',
+        dataType: 'html',
+        data: 'rrr_id=' + rrr_id,
+        success: function (response) {
+            $("#notesheet_quick_view_modal").modal('show');
+            $("#notesheet_quick_view_modal_body").html(response);
+        }
+    });
+}
+
 function execute_rlp_sa_update_form(form_id, process_type='rlp_sa_update_execute'){
     $.ajax({
         url: baseUrl + "function/rlp_process.php?process_type="+process_type,
@@ -112,6 +125,24 @@ function execute_rlp_sa_update_form(form_id, process_type='rlp_sa_update_execute
 function execute_rrr_dh_update_form(form_id, process_type='rrr_dh_update_execute'){
     $.ajax({
         url: baseUrl + "function/rrr_processing.php?process_type="+process_type,
+        type: 'POST',
+        dataType: 'json',
+        data: $("#"+form_id).serialize(),
+        success: function (response) {
+            if(response.status == "success"){
+                swal("Success", response.message, "success");
+                setTimeout(function () {
+                    location.reload();
+                }, 2000);                
+            }else{
+                swal("Failed", response.message, "error");
+            }
+        }
+    });
+}
+function execute_notesheet_dh_update_form(form_id, process_type='notesheet_dh_update_execute'){
+    $.ajax({
+        url: baseUrl + "function/notesheet_processing.php?process_type="+process_type,
         type: 'POST',
         dataType: 'json',
         data: $("#"+form_id).serialize(),

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 23, 2022 at 06:45 AM
+-- Generation Time: Jun 27, 2022 at 06:43 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 7.4.21
 
@@ -74,6 +74,7 @@ CREATE TABLE `candidates` (
   `exp_with_ddc` varchar(15) NOT NULL,
   `rrr_no` varchar(15) NOT NULL,
   `designation` varchar(50) NOT NULL,
+  `expected_salary` varchar(11) NOT NULL,
   `remarks` longtext NOT NULL,
   `cv` varchar(500) NOT NULL,
   `created_at` date NOT NULL DEFAULT current_timestamp(),
@@ -81,6 +82,14 @@ CREATE TABLE `candidates` (
   `updated_at` date NOT NULL DEFAULT current_timestamp(),
   `updated_by` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `candidates`
+--
+
+INSERT INTO `candidates` (`id`, `candidate_id`, `name`, `email`, `phone`, `dob`, `referred_by`, `last_degree_title`, `last_degree_sub`, `last_degree_ins`, `pasing_year`, `total_exp`, `exp_with_ddc`, `rrr_no`, `designation`, `expected_salary`, `remarks`, `cv`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
+(24, 'CAN-0001', 'Atiqur Rahman Bhuiyan', 'arb@gmail.com', '123456', '2022-05-24', 'ENG-000610', 'Degree', 'Subject', 'Institution', '2020', '3', '1', '1', '1', '45000', 'Test', '1653366673Meeting Minutes of SMS Aggregator-04.03.2022.pdf', '2022-05-24', '', '2022-05-24', ''),
+(25, 'CAN-0002', 'Khayrul Alam', 'alam@gmail.com', '12345678925', '2022-05-25', 'SPL-008077', 'degree', 'subject', 'institution', '2020', '3', '1', '1', '35', '35000', 'ok', '1653456607Meeting Minutes of SMS Aggregator-04.03.2022.pdf', '2022-05-25', '', '2022-05-25', '');
 
 -- --------------------------------------------------------
 
@@ -511,6 +520,14 @@ CREATE TABLE `evaluation_details` (
   `updated_at` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `evaluation_details`
+--
+
+INSERT INTO `evaluation_details` (`id`, `int_id`, `can_id`, `education`, `experience`, `presentation`, `know_com_pos`, `communication`, `attitude`, `teamwork`, `leadership`, `technical_know`, `willingness`, `remarks`, `final_score`, `salary_expectation`, `other_req`, `notice_period`, `final_recommendation`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'INT-0002', 24, 3, 4, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, '50000', '', '', '1', 0, '2022-06-22', '2022-06-22'),
+(2, 'INT-0002', 25, 4, 5, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, '30000', '', '', '2', 0, '2022-06-22', '2022-06-22');
+
 -- --------------------------------------------------------
 
 --
@@ -530,6 +547,17 @@ CREATE TABLE `interviews` (
   `updated_by` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `interviews`
+--
+
+INSERT INTO `interviews` (`id`, `code`, `date`, `time`, `location`, `interview_status`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
+(17, 'INT-0001', '2022-05-24', '10 am', 'KT', 0, '0000-00-00 00:00:00', 0, NULL, 0),
+(18, 'INT-0002', '2022-05-25', '10 AM', 'KT', 0, '0000-00-00 00:00:00', 0, NULL, 0),
+(19, 'INT-0003', '2022-05-26', '10 AM', 'KT', 0, '0000-00-00 00:00:00', 0, NULL, 0),
+(20, 'INT-0004', '2022-06-26', '10 AM', 'KT', 0, '0000-00-00 00:00:00', 0, NULL, 0),
+(21, 'INT-0005', '2022-06-26', '12', 'vcv', 0, '0000-00-00 00:00:00', 0, NULL, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -545,6 +573,20 @@ CREATE TABLE `interview_bom` (
   `updated_at` datetime DEFAULT NULL,
   `updated_by` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `interview_bom`
+--
+
+INSERT INTO `interview_bom` (`id`, `interview_id`, `emp_id`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
+(1, 'INT-0001', 'ENG-000610', '0000-00-00 00:00:00', 0, NULL, 0),
+(2, 'INT-0001', 'SPL-008077', '0000-00-00 00:00:00', 0, NULL, 0),
+(3, 'INT-0003', 'ENG-000610', '0000-00-00 00:00:00', 0, NULL, 0),
+(4, 'INT-0003', 'SPL-008077', '0000-00-00 00:00:00', 0, NULL, 0),
+(5, 'INT-0003', 'SPL-007916', '0000-00-00 00:00:00', 0, NULL, 0),
+(6, 'INT-0004', 'ENG-000610', '0000-00-00 00:00:00', 0, NULL, 0),
+(7, 'INT-0004', 'SPL-008077', '0000-00-00 00:00:00', 0, NULL, 0),
+(8, 'INT-0005', 'ENG-000610', '0000-00-00 00:00:00', 0, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -563,6 +605,21 @@ CREATE TABLE `interview_candiate` (
   `updated_by` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `interview_candiate`
+--
+
+INSERT INTO `interview_candiate` (`id`, `interview_id`, `rrr_id`, `candidate_id`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
+(1, 'INT-0001', 1, 24, '0000-00-00 00:00:00', 0, NULL, 0),
+(2, 'INT-0002', 1, 24, '0000-00-00 00:00:00', 0, NULL, 0),
+(3, 'INT-0002', 0, 25, '0000-00-00 00:00:00', 0, NULL, 0),
+(4, 'INT-0003', 1, 24, '0000-00-00 00:00:00', 0, NULL, 0),
+(5, 'INT-0003', 0, 25, '0000-00-00 00:00:00', 0, NULL, 0),
+(6, 'INT-0004', 4, 24, '0000-00-00 00:00:00', 0, NULL, 0),
+(7, 'INT-0004', 2, 25, '0000-00-00 00:00:00', 0, NULL, 0),
+(8, 'INT-0005', 1, 24, '0000-00-00 00:00:00', 0, NULL, 0),
+(9, 'INT-0005', 0, 25, '0000-00-00 00:00:00', 0, NULL, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -578,6 +635,19 @@ CREATE TABLE `interview_requisition` (
   `updated_at` datetime DEFAULT NULL,
   `updated_by` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `interview_requisition`
+--
+
+INSERT INTO `interview_requisition` (`id`, `interview_id`, `rrr_id`, `created_at`, `created_by`, `updated_at`, `updated_by`) VALUES
+(1, 'INT-0001', '1', '0000-00-00 00:00:00', 0, NULL, 0),
+(2, 'INT-0002', '1', '0000-00-00 00:00:00', 0, NULL, 0),
+(3, 'INT-0003', '1', '0000-00-00 00:00:00', 0, NULL, 0),
+(4, 'INT-0004', '4', '0000-00-00 00:00:00', 0, NULL, 0),
+(5, 'INT-0004', '2', '0000-00-00 00:00:00', 0, NULL, 0),
+(6, 'INT-0004', '1', '0000-00-00 00:00:00', 0, NULL, 0),
+(7, 'INT-0005', '1', '0000-00-00 00:00:00', 0, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -613,6 +683,44 @@ CREATE TABLE `middle_datas` (
 
 INSERT INTO `middle_datas` (`id`, `name`, `data_details`) VALUES
 (1, 'department', '{\"1\":[\"Management\",\"Market Development\",\"Finance And Accounts\",\"Administration\",\"Dredging\",\"Engineering\",\"Project ENG\",\"Operation\",\"Maintenance\",\"QMS\",\"Mechanical\",\"Civil\",\"Commercial\",\"Store\"],\"2\":[\"Engineering\",\"Civil\"],\"3\":[\"Management\",\"Administration\",\"Project\",\"Finance And Accounts\"],\"4\":[\"Sales And Marketing\",\"Service\",\"Project\",\"Administration\",\"Finance And Accounts\"],\"5\":[\"Management\",\"Finance And Accounts\",\"QMS\",\"Human Resource Management\",\"Purchase And Procurement\",\"Legal\",\"Administration\",\"IT\",\"Commercial\",\"Project\",\"Business Development\",\"Brand Communication\",\"Share Market\",\"Enterprise Resource Planning\",\"Operation\",\"Service And WSS\"],\"6\":[\"Management\",\"Commercial\",\"Project Development And Implemantaion\",\"RAndD\",\"Factory Operation\",\"Administration\",\"Finance And Accounts\",\"Plate Preparation\",\"Charging\",\"Quality Assurance\",\"Maintenance\",\"Warehouse And Logistics\",\"Assembly\",\"CMP\",\"Service And WSS\",\"QMS\",\"Sales And Marketing\",\"IT\",\"Marketing And Sales- Export And Corporate\",\"MC\",\"Sales Operation\",\"Planning And Coordination\",\"Store\",\"Gel And VRLA\",\"Purchase And Procurement\"],\"7\":[\"Management\",\"Operation\",\"Finance And Accounts\",\"Administration\",\"Service And Maintanance\",\"Sales And Marketing\",\"Store\"],\"8\":[\"Project\",\"Switch Gear\",\"Operation\",\"Administration\"],\"9\":[\"Sales And Marketing\"],\"10\":[\"Service\"],\"11\":[\"Finance And Accounts\",\"Service\",\"Operation\",\"Sales And Marketing\",\"Administration\",\"Pre Sales\",\"Maintenance\",\"Group Customer Care\",\"Marine\"],\"12\":[\"Documentation\",\"Billing\",\"Operation\",\"Administration\",\"Store\",\"Finance And Accounts\",\"Purchase And Procurement\",\"CTMS\",\"SC\",\"Ship Planning\",\"Terminal Operation\",\"RMG\",\"RTG\",\"Winch\",\"CCT Yard\",\"Strategic Planning And Terminal Operation\",\"NCT Yard\",\"CFS\",\"FLT\",\"Yard Planning And Documentation\",\"CCT Lasher\",\"ITV\",\"QGC\",\"Quay Yard Supervisor\",\"Delivery\",\"NCT Lasher\"],\"13\":[\"Operation\",\"Service\",\"Maintenance\",\"Administration\"],\"14\":[\"Maintenance\",\"QGC and RTG\",\"PM and FLT\",\"Purchase And Procurement\",\"Store\",\"Administration\",\"QGC Maintanence\"]}');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notesheet_remarks_history`
+--
+
+CREATE TABLE `notesheet_remarks_history` (
+  `id` int(11) NOT NULL,
+  `rrr_info_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `remarks` longtext NOT NULL,
+  `remarks_date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `notesheet_remarks_history`
+--
+
+INSERT INTO `notesheet_remarks_history` (`id`, `rrr_info_id`, `user_id`, `remarks`, `remarks_date`) VALUES
+(57, 1, 904, 'Recommended', '2022-05-23 11:02:08'),
+(58, 1, 2099, 'Recommended', '2022-05-23 11:23:17'),
+(59, 1, 616, 'Approved', '2022-05-23 11:24:35'),
+(60, 0, 0, 'TEST', '2022-05-24 16:21:10'),
+(61, 0, 0, 'TEST', '2022-05-24 16:21:11'),
+(62, 0, 0, 'TEST', '2022-05-24 16:21:12'),
+(63, 0, 0, 'TEST', '2022-05-24 16:21:12'),
+(64, 0, 0, 'TEST', '2022-05-24 16:21:12'),
+(65, 0, 0, 'TEST', '2022-05-24 16:21:15'),
+(66, 0, 0, 'WEFWE', '2022-05-24 16:22:29'),
+(67, 0, 0, 'WEFWE', '2022-05-24 16:22:34'),
+(68, 0, 0, 'tEST', '2022-05-24 16:22:41'),
+(69, 0, 0, 'tEST', '2022-05-24 16:22:42'),
+(70, 1, 3105, 'test', '2022-05-24 16:32:10'),
+(71, 1, 3105, 'thank you', '2022-05-24 16:33:07'),
+(72, 1, 3105, 'sdfdgfd', '2022-06-26 12:21:08'),
+(73, 2, 3105, 'yu', '2022-06-26 12:23:39'),
+(74, 2, 3105, 'gfgfg', '2022-06-26 12:29:32');
 
 -- --------------------------------------------------------
 
@@ -665,7 +773,7 @@ INSERT INTO `priority_details` (`id`, `name`, `color_code`, `show_order`) VALUES
 (1, 'Urgent', 'danger', 1),
 (2, 'High', 'info', 2),
 (3, 'Medium', 'warning', 3),
-(4, 'Low', 'success', 4);
+(4, 'Normal', 'success', 4);
 
 -- --------------------------------------------------------
 
@@ -1085,6 +1193,24 @@ CREATE TABLE `rrr_acknowledgement` (
   `updated_by` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `rrr_acknowledgement`
+--
+
+INSERT INTO `rrr_acknowledgement` (`id`, `rrr_info_id`, `user_id`, `ack_order`, `ack_status`, `ack_request_date`, `ack_updated_date`, `is_visible`, `created_by`, `updated_by`) VALUES
+(198, 1, 616, 3, 1, '2022-05-23 11:23:17', '2022-05-23 11:24:35', 1, 3105, 616),
+(199, 1, 614, 4, 0, '2022-05-23 11:24:35', NULL, 1, 3105, NULL),
+(200, 1, 904, 1, 6, '2022-05-23 10:58:27', '2022-05-23 11:02:08', 1, 3105, 904),
+(201, 1, 2099, 2, 6, '2022-05-23 11:02:08', '2022-05-23 11:23:17', 1, 3105, 2099),
+(202, 2, 616, 3, 0, '2022-05-29 16:44:02', NULL, 0, 3105, NULL),
+(203, 2, 614, 4, 0, '2022-05-29 16:44:02', NULL, 0, 3105, NULL),
+(204, 2, 904, 1, 0, '2022-05-29 16:44:02', NULL, 1, 3105, NULL),
+(205, 2, 2099, 2, 0, '2022-05-29 16:44:02', NULL, 0, 3105, NULL),
+(206, 4, 616, 3, 0, '2022-05-30 11:15:44', NULL, 0, 3105, NULL),
+(207, 4, 614, 4, 0, '2022-05-30 11:15:44', NULL, 0, 3105, NULL),
+(208, 4, 904, 1, 0, '2022-05-30 11:15:44', NULL, 1, 3105, NULL),
+(209, 4, 2099, 2, 0, '2022-05-30 11:15:44', NULL, 0, 3105, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -1137,6 +1263,16 @@ CREATE TABLE `rrr_info` (
   `is_delete` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `rrr_info`
+--
+
+INSERT INTO `rrr_info` (`id`, `rrr_no`, `rrr_user_id`, `rrr_user_office_id`, `priority`, `request_date`, `request_division`, `request_department`, `request_person`, `designation`, `user_remarks`, `req_for`, `emp_type`, `justification_for_rec`, `rem_spe_rec`, `req_for_division`, `req_for_department`, `req_designation`, `req_number`, `req_location_project`, `req_reporting_man`, `req_salary`, `req_responsibilities`, `rrr_status`, `is_viewd`, `created_by`, `created_at`, `updated_by`, `updated_at`, `is_delete`) VALUES
+(1, 'RRR-2022-05-Corporate-IT-0001', 3105, 'SPL-007729', 4, '2022-05-23 12:00:00', 5, 33, 'Atiqur Rahman Bhuiyan', '1', 'Requester Remarks', 'NewPosition', 'management', 'Justification for Recruitment', 'Remark/Special Requirements', '', '', '35', '1', 'Khawaja Tower', 'SPL-007729', '30000', 'Key Responsibilites', 1, 0, 3105, '2022-05-23 10:58:26', NULL, NULL, 0),
+(2, 'RRR-2022-05-Corporate-IT-0002', 3105, 'SPL-007729', 4, '2022-05-29 12:00:00', 5, 33, 'Atiqur Rahman Bhuiyan', '1', 'Test', 'NewPosition', 'management', 'test', 'test', '', '', '35', '1', 'KT', 'FI', '40000', 'Test', 5, 0, 3105, '2022-05-29 04:44:01', NULL, NULL, 0),
+(3, 'RRR-2022-05-Corporate-IT-0003', 3105, 'SPL-007729', 1, '2022-05-30 12:00:00', 5, 33, 'Atiqur Rahman Bhuiyan', '1', 'Remarks', 'replacement', 'non-management', 'Justification', 'Requirements', '5', '33', '35', '2', 'KT', 'FI', '45000', 'Responsibilites', 7, 0, 3105, '2022-05-30 11:15:32', NULL, NULL, 1),
+(4, 'RRR-2022-05-Corporate-IT-0004', 3105, 'SPL-007729', 1, '2022-05-30 12:00:00', 5, 33, 'Atiqur Rahman Bhuiyan', '1', 'Remarks', 'replacement', 'non-management', 'Justification', 'Requirements', '', '', '35', '2', 'KT', 'FI', '45000', 'Responsibilites', 5, 0, 3105, '2022-05-30 11:15:44', NULL, NULL, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -1150,6 +1286,27 @@ CREATE TABLE `rrr_remarks_history` (
   `remarks` longtext NOT NULL,
   `remarks_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `rrr_remarks_history`
+--
+
+INSERT INTO `rrr_remarks_history` (`id`, `rrr_info_id`, `user_id`, `remarks`, `remarks_date`) VALUES
+(57, 1, 904, 'Recommended', '2022-05-23 11:02:08'),
+(58, 1, 2099, 'Recommended', '2022-05-23 11:23:17'),
+(59, 1, 616, 'Approved', '2022-05-23 11:24:35'),
+(60, 0, 0, 'TEST', '2022-05-24 16:21:10'),
+(61, 0, 0, 'TEST', '2022-05-24 16:21:11'),
+(62, 0, 0, 'TEST', '2022-05-24 16:21:12'),
+(63, 0, 0, 'TEST', '2022-05-24 16:21:12'),
+(64, 0, 0, 'TEST', '2022-05-24 16:21:12'),
+(65, 0, 0, 'TEST', '2022-05-24 16:21:15'),
+(66, 0, 0, 'WEFWE', '2022-05-24 16:22:29'),
+(67, 0, 0, 'WEFWE', '2022-05-24 16:22:34'),
+(68, 0, 0, 'tEST', '2022-05-24 16:22:41'),
+(69, 0, 0, 'tEST', '2022-05-24 16:22:42'),
+(70, 1, 3105, 'test', '2022-05-24 16:32:10'),
+(71, 1, 3105, 'thank you', '2022-05-24 16:33:07');
 
 -- --------------------------------------------------------
 
@@ -4696,6 +4853,13 @@ ALTER TABLE `middle_datas`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `notesheet_remarks_history`
+--
+ALTER TABLE `notesheet_remarks_history`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `rlp_info_id` (`rrr_info_id`);
+
+--
 -- Indexes for table `page_details`
 --
 ALTER TABLE `page_details`
@@ -4838,7 +5002,7 @@ ALTER TABLE `branch`
 -- AUTO_INCREMENT for table `candidates`
 --
 ALTER TABLE `candidates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `department`
@@ -4862,19 +5026,19 @@ ALTER TABLE `evaluation_details`
 -- AUTO_INCREMENT for table `interviews`
 --
 ALTER TABLE `interviews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `interview_bom`
 --
 ALTER TABLE `interview_bom`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `interview_candiate`
 --
 ALTER TABLE `interview_candiate`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `interview_requisition`
@@ -4887,6 +5051,12 @@ ALTER TABLE `interview_requisition`
 --
 ALTER TABLE `middle_datas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `notesheet_remarks_history`
+--
+ALTER TABLE `notesheet_remarks_history`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `page_details`
@@ -4964,7 +5134,7 @@ ALTER TABLE `role_access`
 -- AUTO_INCREMENT for table `rrr_acknowledgement`
 --
 ALTER TABLE `rrr_acknowledgement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=198;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=210;
 
 --
 -- AUTO_INCREMENT for table `rrr_delete_history`
@@ -4982,7 +5152,7 @@ ALTER TABLE `rrr_info`
 -- AUTO_INCREMENT for table `rrr_remarks_history`
 --
 ALTER TABLE `rrr_remarks_history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT for table `status_details`

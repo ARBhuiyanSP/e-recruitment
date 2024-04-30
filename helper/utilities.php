@@ -537,6 +537,17 @@ function getDivisionNameById($id){
     }
     return $name;
 }
+function getCandidateNameById($id){
+    global $conn;
+    $table  =   "candidates";
+    $sql = "SELECT * FROM $table WHERE id=$id";
+    $result = $conn->query($sql);
+    $name   =   '';
+    if ($result->num_rows > 0) {
+        $name   =   $result->fetch_object()->name;
+    }
+    return $name;
+}
 function getDivisionIdByName($name){
     global $conn;
     $table  =   "branch";
@@ -1013,6 +1024,81 @@ function get_rrr_item_details($rrr_details){
 				<input type="hidden" name="rrr_info_id" value="<?php echo $rrr_info->id; ?>">
 				<input type="hidden" name="created_by" value="<?php echo $rrr_info->rrr_user_id; ?>">
 				<button type="button" class="btn btn-primary btn-block" onclick="execute_rrr_dh_update_form('rrr_dh_update_form', 'rrr_dh_update_execute');">Update</button>
+			</form>
+        </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->
+<div class="clearfix"></div>
+<?php }
+function get_notesheet_details($rrr_details){   
+    $rrr_info       =   $rrr_details['rrr_info'];
+    //$rrr_remarks    =   $rrr_details['rrr_remarks_history'];
+?>
+<!-- Main content -->
+<section class="invoice">
+    <!-- title row -->
+    <div class="row">
+        <div class="col-xs-12">
+			<table class="table table-bordered">
+				<tr>
+					<td class="">Notesheet No: <?php echo $rrr_info->rrr_no; ?></td>
+					<td class="">Notesheet For: <?php echo getDesignationNameById($rrr_info->req_designation); ?>/<?php echo getDivisionNameById($rrr_info->request_division); ?></td>
+					<td class="">Notesheet: <?php echo getPriorityName($rrr_info->priority) ?></td>
+				</tr>
+			</table>
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- info row -->
+    <!-- /.row -->
+
+    <!-- Table row -->
+    <div class="box-footer box-comments">
+        <?php
+        $table = "notesheet_remarks_history WHERE rrr_info_id=$rrr_info->id";
+        $order = 'DESC';
+        $column = 'remarks_date';
+        $allRemarksHistory = getTableDataByTableName($table, $order, $column);
+        if (isset($allRemarksHistory) && !empty($allRemarksHistory)) {
+            foreach ($allRemarksHistory as $dat) {
+                ?>
+                <div class="box-comment">
+                  <div class="comment-text" style="margin-left: 0;">
+                      <span class="username">
+                        By <?php echo getUserNameByUserId($dat->user_id); ?>
+                        <span class="text-muted pull-right"> at <?php echo human_format_date($dat->remarks_date) ?></span>
+                      </span><!-- /.username -->
+                  <?php echo $dat->remarks ?>
+                </div>
+                <!-- /.comment-text -->
+              </div>
+              <!-- /.box-comment -->
+                <?php
+            } // foreach
+        }
+            ?>
+            <div class="box-comment">
+                <div class="comment-text" style="margin-left: 0;">
+                    <span class="username">
+                        By <?php echo getUserNameByUserId($rrr_info->rrr_user_id); ?>
+                        <span class="text-muted pull-right"> at <?php echo human_format_date($rrr_info->created_at) ?></span>
+                    </span><!-- /.username -->
+                    <?php echo $rrr_info->user_remarks ?>
+                </div>
+                <!-- /.comment-text -->
+            </div>
+			<form id="rrr_dh_update_form">
+
+
+				<input type="hidden" name="acknowledgement" value="<?php echo $rrr_info->rrr_status; ?>">			
+				<div class="form-group">
+					<label for="comment">Comments:</label>
+					<textarea class="form-control" rows="5" id="remarks" name="remarks"></textarea>
+				</div>
+				<input type="hidden" name="rrr_info_id" value="<?php echo $rrr_info->id; ?>">
+				<input type="hidden" name="created_by" value="<?php echo $rrr_info->rrr_user_id; ?>">
+				<button type="button" class="btn btn-primary btn-block" onclick="execute_notesheet_dh_update_form('rrr_dh_update_form', 'notesheet_dh_update_execute');">Update</button>
 			</form>
         </div>
     <!-- /.row -->

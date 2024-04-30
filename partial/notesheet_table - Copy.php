@@ -2,6 +2,9 @@
 .modal-dialog{
 	width:800px !important;
 }
+.btn{
+	padding:3px 12px !important;
+}
 </style>
 <?php
     $currentUserId  =   $_SESSION['logged']['user_id'];
@@ -48,10 +51,11 @@
 					</select>
 				</div>
 			</div>
-		</div>
-		<div class="row" style="padding-top:5px;">
-			<div class="col-sm-6">
-				<input type="submit" name="evaluation_create" id="submit" class="btn btn-block btn-primary" value="Next" />
+			<div class="col-sm-3">
+				<div class="form-group">
+					<label for="exampleId">-</label>
+					<input type="submit" name="evaluation_create" id="submit" class="btn btn-block btn-primary" value="Search" />
+				</div>
 			</div>
 		</div>
 	</form>
@@ -69,13 +73,10 @@
 	 ?>
 	<div class="row text-center">
 		<div class="col-md-12">
-			<h3>Candidates Evaluation Form</h3>
-			<table class="table table-bordered">
+			<h3>Candidates Notesheet</h3>
+			<table id="" class="table table-bordered">
 				<tr>
 					<td>Interview Details : <?php echo $int_id; ?> | Interview Date : 17th April 2022</td>
-				</tr>
-				<tr>
-					<td>Interviewer :----- </td>
 				</tr>
 			</table>
 		</div>
@@ -141,8 +142,29 @@
 		</div>
 	</div>
     <?php }else{ ?>
-    <div class="alert alert-warning">
+    <!--- <div class="alert alert-warning">
       <strong>Select an Interview</strong> To Evaluate candidates .
-    </div>
+    </div> --->
+	
+	<table id="example" class="table table-bordered table-striped list-table-custom-style" style="width: 100%;" width="100%">
+            <thead>
+                <tr> 
+                    <th>SLN#</th>
+                    <th>Group</th>
+                    <th>Employee ID</th>
+                    <th>Name</th>
+                    <th>Designation</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+        </table>
+	
+	
+	
     <?php } ?>
 	</div>
+	<script>
+	$(document).ready(function () {
+    $('#example').DataTable();
+});
+	</script>
